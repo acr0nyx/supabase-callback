@@ -1,2 +1,131 @@
-# supabase-callback
-A static HTML page for Supabase email verification redirect
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Verified - Axiom</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #f0f4f9;
+  --card: #ffffff;
+  --text: #172033;
+  --muted: #5f6b7a;
+  --accent: #2563eb;
+  --success: #10b981;
+  --border: #e5e7eb;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.65;
+  background: linear-gradient(135deg, #e0e7ff 0%, var(--bg) 100%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main {
+  width: min(540px, calc(100% - 32px));
+  margin: 20px auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 48px 32px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+  text-align: center;
+}
+.icon-container {
+  width: 72px;
+  height: 72px;
+  background: #ecfdf5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  border: 2px solid #a7f3d0;
+}
+.icon-container svg {
+  width: 36px;
+  height: 36px;
+  color: var(--success);
+}
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.2;
+  color: var(--text);
+}
+p { 
+  margin: 14px 0; 
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+.highlight {
+  color: var(--text);
+  font-weight: 600;
+}
+.btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  transition: transform 0.2s, background 0.2s;
+}
+.btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+.footer {
+  margin-top: 42px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+@media (max-width: 640px) {
+  main {
+    padding: 32px 24px;
+    border-radius: 18px;
+  }
+}
+</style>
+</head>
+<body>
+  <main>
+    <div class="icon-container">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://w3.org">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+    
+    <h1>Verification Successful!</h1>
+    <p>Your email has been safely verified for <span class="highlight">Axiom</span>.</p>
+    <p>You can now safely close this browser window and return directly to the app to continue your work.</p>
+    
+    <!-- Fallback deep-link button in case auto-redirect doesn't fire -->
+    <a href="axiom://" class="btn">Return to Axiom</a>
+
+    <p class="footer">© 2026 Acronyx. All rights reserved.</p>
+  </main>
+
+  <script>
+    // Automatically attempt to throw the user back into the app using a standard deep link scheme
+    window.onload = function() {
+      setTimeout(function() {
+        window.location.href = "axiom://";
+      }, 500);
+    };
+  </script>
+</body>
+</html>
+
